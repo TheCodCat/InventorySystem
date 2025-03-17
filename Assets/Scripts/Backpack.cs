@@ -1,3 +1,4 @@
+using Assets.Scripts.Models;
 using UnityEngine;
 
 public class Backpack : MonoBehaviour
@@ -5,6 +6,18 @@ public class Backpack : MonoBehaviour
     public static Backpack instance;
     public CellType DataCell;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private CellData[] cellDatas;
+    public CellData[] CellDatas
+    {
+        get
+        {
+            return cellDatas;
+        }
+        set
+        {
+            cellDatas = value;
+        }
+    }
     private void Awake()
     {
         if(instance == null)
