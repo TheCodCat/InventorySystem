@@ -3,6 +3,7 @@ using UnityEngine;
 public class Backpack : MonoBehaviour
 {
     public static Backpack instance;
+    public CellType DataCell;
     [SerializeField] private Canvas canvas;
     private void Awake()
     {
