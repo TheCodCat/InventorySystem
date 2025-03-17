@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CellUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CellUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
     [SerializeField] private CellType data;
     [SerializeField] private Image image;
@@ -25,7 +25,16 @@ public class CellUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 image.sprite = Backpack.instance.CellDatas.FirstOrDefault(x => x.CellType.Equals(cell)).ItemData.Sprite;
             }
             else
+            {
+                if (Backpack.instance.DataCell.Equals(CellType.None)) return;
                 image.sprite = null;
+            }
         }
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log("3333");
+        Backpack.instance.OnChangeInventory?.Invoke(Backpack.instance.DataCell, false);
     }
 }
