@@ -521,7 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596206b1aadc7354f86dd75c00b83fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDatas: []
 --- !u!54 &532472465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -545,7 +544,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -761,6 +760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: 3
+  image: {fileID: 0}
 --- !u!1 &927256166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: 1
+  image: {fileID: 0}
 --- !u!1 &1246886068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,12 +1228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5587d8c1ad0fc41a476237c2f36df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellType: 1
   ItemData:
     ID: 1
     Name: Cube
     Weight: 10
     CellType: 1
+    Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1612161148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,6 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: 2
+  image: {fileID: 0}
 --- !u!1001 &1829706363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1549,8 +1551,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataCell: 0
+  OnChangeInventory:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1011304226}
+        m_TargetAssemblyTypeName: CellUI, Assembly-CSharp
+        m_MethodName: ChangeView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1650424085}
+        m_TargetAssemblyTypeName: CellUI, Assembly-CSharp
+        m_MethodName: ChangeView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 835121786}
+        m_TargetAssemblyTypeName: CellUI, Assembly-CSharp
+        m_MethodName: ChangeView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   canvas: {fileID: 927256170}
-  cellDatas: []
+  cellDatas:
+  - CellType: 1
+    ItemData:
+      ID: 111
+      Name: 322
+      Weight: 123234
+      CellType: 1
+      Sprite: {fileID: 0}
+  - CellType: 2
+    ItemData:
+      ID: 
+      Name: 
+      Weight: 0
+      CellType: 0
+      Sprite: {fileID: 0}
+  - CellType: 3
+    ItemData:
+      ID: 
+      Name: 
+      Weight: 0
+      CellType: 0
+      Sprite: {fileID: 0}
 --- !u!1 &2117385436
 GameObject:
   m_ObjectHideFlags: 0

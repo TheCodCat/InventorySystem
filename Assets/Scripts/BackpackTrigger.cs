@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BackpackTrigger : MonoBehaviour
 {
-     private CellData cellData;
+    private CellData cellData;
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other);
@@ -14,6 +14,7 @@ public class BackpackTrigger : MonoBehaviour
         {
             cellData = Backpack.instance.CellDatas.FirstOrDefault(x => x.CellType.Equals(component.ItemData.CellType));
             cellData.ItemData = component.ItemData;
+            Backpack.instance.OnChangeInventory?.Invoke(component.ItemData.CellType, true);
         }
     }
 }

@@ -1,10 +1,12 @@
 using Assets.Scripts.Models;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Backpack : MonoBehaviour
 {
     public static Backpack instance;
     public CellType DataCell;
+    public UnityEvent<CellType, bool> OnChangeInventory;
     [SerializeField] private Canvas canvas;
     [SerializeField] private CellData[] cellDatas;
     public CellData[] CellDatas
