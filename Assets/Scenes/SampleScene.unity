@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5587d8c1ad0fc41a476237c2f36df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemData: {fileID: 11400000, guid: 2c7879cec8b231d41b71e52ee311eeb3, type: 2}
+  ItemData: {fileID: 11400000, guid: f7ad83b20f8daae4ca175e67992a239e, type: 2}
   State: 0
   rb: {fileID: 506716104}
 --- !u!114 &506716103
@@ -672,7 +672,7 @@ Transform:
   m_GameObject: {fileID: 506716101}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.808, y: 0.177, z: -0.436}
+  m_LocalPosition: {x: 0.701, y: 0.177, z: -0.218}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -703,7 +703,7 @@ Transform:
   m_GameObject: {fileID: 532472461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.85, y: 0, z: 0}
+  m_LocalPosition: {x: 2.214, y: 0, z: 0.932}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1419,7 +1419,7 @@ Transform:
   m_GameObject: {fileID: 1246886068}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0.768, z: 0}
+  m_LocalPosition: {x: 0.377, y: 0.211, z: 0.006}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  backpackPointController: {fileID: 0}
+  backpackPointController: {fileID: 335873783}
   currentCellType: 0
   OnInventoryChanged:
     m_PersistentCalls:
