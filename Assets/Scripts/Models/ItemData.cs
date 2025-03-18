@@ -1,19 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Assets.Scripts.Models
+[CreateAssetMenu(menuName = "Item", fileName = "New item", order = 1)]
+public class ItemData : ScriptableObject
 {
-    [System.Serializable]
-    public class ItemData
-    {
-        public string ID;
-        public string Name;
-        public float Weight;
-        public CellType CellType;
-        public Sprite Sprite;
-
-        public ItemData()
-        {
-
-        }
-    }
+    public string Name;
+    public int ID;
+    public CellType CellType;
+    public float Weight;
+    public Sprite Icon;
 }

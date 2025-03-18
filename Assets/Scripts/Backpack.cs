@@ -1,23 +1,21 @@
-using Assets.Scripts.Models;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Backpack : MonoBehaviour
 {
     public static Backpack instance;
-    public CellType DataCell;
-    public UnityEvent<CellType, bool> OnChangeInventory;
-    [SerializeField] private Canvas canvas;
-    [SerializeField] private CellData[] cellDatas;
-    public CellData[] CellDatas
+    [SerializeField] private Item[] items = new Item[] { };
+    public UnityEvent<Item[]> OnInventoryChanged;
+    public Item[] Items
     {
         get
         {
-            return cellDatas;
+            return items;
         }
         set
         {
-            cellDatas = value;
+            items = value;
+            OnInventoryChanged?.Invoke(value);
         }
     }
     private void Awake()
@@ -26,19 +24,33 @@ public class Backpack : MonoBehaviour
         {
             instance = this;
         }
-        else
-            Destroy(gameObject);
     }
-    public Vector3 GetPosition()
+
+    public void PutItem(Item item)
     {
-        return transform.position;
+        int index = item.ItemData.CellType switch
+        {
+            CellType.One => 0,
+            CellType.Two => 1,
+            CellType.Three => 2,
+            _ => 0
+        };
+        Item[] newItems = Items;
+        newItems[index] = item;
+        Items = newItems;
     }
-    private void OnMouseDown()
+
+    public Item PickUpItem(int index)
     {
-        canvas.gameObject.SetActive(true);
+        return Items[index] ?? new Item();
     }
-    private void OnMouseUp()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        canvas.gameObject.SetActive(false);
+        if(collision.transform.TryGetComponent(out Item component))
+        {
+            PutItem(component);
+            component.gameObject.SetActive(false);
+        }
     }
 }

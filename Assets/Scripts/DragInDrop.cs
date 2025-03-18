@@ -21,7 +21,7 @@ public class DragInDrop : MonoBehaviour
     {
         cancellationTokenSource = new CancellationTokenSource();
         planeDragTemp = Instantiate(planeDrag, transform.position, Quaternion.identity);
-        Vector3 backpackPos = Backpack.instance.GetPosition();
+        Vector3 backpackPos = Backpack.instance.transform.position;
         planeDragTemp.transform.LookAt(backpackPos);
         isGrag = true;
         body.isKinematic = true;
