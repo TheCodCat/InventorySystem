@@ -49,6 +49,7 @@ public class Backpack : MonoBehaviour
         item.PutToUpload(vector3, 2f, true);
         Items = newItems;
         string result = await RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged"));//пост запрос
+        item.State = ItemState.PutUpload;
         Debug.Log(result);
     }
 
@@ -61,6 +62,7 @@ public class Backpack : MonoBehaviour
         Items = newItems;
         item.PutToUpload(new Vector3(0, 2, 0), 2f, false);
         item.transform.SetParent(null);
+        item.State = ItemState.None;
         RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged")).AsUniTask();//пост запрос
         return item;
     }

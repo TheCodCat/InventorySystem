@@ -20,6 +20,7 @@ public class DragInDrop : MonoBehaviour
     }
     private async void OnMouseDown()
     {
+        if (item.State == ItemState.PutUpload) return;
         cancellationTokenSource = new CancellationTokenSource();
         planeDragTemp = Instantiate(planeDrag, transform.position, Quaternion.identity);
         Vector3 backpackPos = Backpack.instance.transform.position;
@@ -28,10 +29,10 @@ public class DragInDrop : MonoBehaviour
         body.isKinematic = true;
         offset = GetOffset();
         await Drag(cancellationTokenSource);
-        item.State = ItemState.None;
     }
     private void OnMouseUp()
     {
+        if (item.State == ItemState.PutUpload) return;
         isGrag = false;
         cancellationTokenSource.Cancel();
         body.isKinematic = false;
@@ -39,14 +40,14 @@ public class DragInDrop : MonoBehaviour
     }
     private async UniTask Drag(CancellationTokenSource cancellationToken)//перемещение
     {
-        item.State = ItemState.Drag;
-        if (cancellationTokenSource.IsCancellationRequested || item.State == ItemState.None)
+        if (cancellationTokenSource.IsCancellationRequested || item.State != ItemState.None)
         {
             cancellationToken.Dispose();
             return;
         }
         else
         {
+            item.State = ItemState.Drag;
             while (!cancellationTokenSource.IsCancellationRequested)
             {
                 await UniTask.Yield();
