@@ -9,6 +9,7 @@ public class BackpackUI : MonoBehaviour
     [SerializeField] private Canvas canvas;
     private void OnMouseDown()
     {
+        Backpack.instance.currentCellType = CellType.None;
         canvas.gameObject.SetActive(true);
     }
     private void OnMouseUp()
@@ -18,8 +19,12 @@ public class BackpackUI : MonoBehaviour
             canvas.gameObject.SetActive(false);
             //логика
             if (Backpack.instance.currentCellType.Equals(CellType.None)) return;
-            string itemname = Backpack.instance.Items.FirstOrDefault(x => x.ItemData.CellType.Equals(Backpack.instance.currentCellType)).ToString();
-            Debug.Log(itemname);
+
+            var item = Backpack.instance.Items.FirstOrDefault(x => x.ItemData.CellType.Equals(Backpack.instance.currentCellType));
+            item.gameObject.SetActive(true);
+            Backpack.instance.UploadItem(items.ToList().IndexOf(item));
+            Debug.Log(item.ItemData.Name);
+
         }
         catch (NullReferenceException ex)
         {
@@ -31,7 +36,11 @@ public class BackpackUI : MonoBehaviour
         items = newItems;
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i] == null) continue;
+            if (items[i] == null)
+            {
+                cellUIs[i].ChangeIcon(null);
+                continue;
+            }
 
             if (items[i].ItemData.CellType.Equals(cellUIs[i].CellType))
             {

@@ -42,9 +42,15 @@ public class Backpack : MonoBehaviour
         Items = newItems;
     }
 
-    public Item PickUpItem(int index)
+    public Item UploadItem(int index)
     {
-        return Items[index] ?? new Item();
+        var item = Items[index] ?? new Item();
+
+        Item[] newItems = Items;
+        newItems[index] = null;
+        Items = newItems;
+
+        return item;
     }
 
     private void OnCollisionEnter(Collision collision)
