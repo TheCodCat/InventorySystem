@@ -39,6 +39,9 @@ public class Backpack : MonoBehaviour
             CellType.Three => 2,
             _ => 0
         };
+
+        if (!(Items[index] == null)) return;
+
         Item[] newItems = Items;
         newItems[index] = item;
         Vector3 vector3 = backpackPointController.GetItemPoint(item.ItemData.CellType);
