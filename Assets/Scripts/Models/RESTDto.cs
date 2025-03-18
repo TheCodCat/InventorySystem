@@ -1,5 +1,6 @@
 ﻿namespace Assets.Scripts.Models
 {
+    [System.Serializable]
     public class RESTDto//класс запроса
     {
         public int Id;//ид предмета

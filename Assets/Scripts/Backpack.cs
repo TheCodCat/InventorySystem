@@ -45,7 +45,8 @@ public class Backpack : MonoBehaviour
         item.transform.SetParent(transform);
         item.PutToUpload(vector3, 2f, true);
         Items = newItems;
-        await RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged")).AsUniTask();
+        string result = await RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged"));
+        Debug.Log(result);
     }
 
     public Item UploadItem(int index)
