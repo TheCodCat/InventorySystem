@@ -19,11 +19,16 @@ public class BackpackUI : MonoBehaviour
             canvas.gameObject.SetActive(false);
             //логика
             if (Backpack.instance.currentCellType.Equals(CellType.None)) return;
-
-            var item = Backpack.instance.Items.FirstOrDefault(x => x.ItemData.CellType.Equals(Backpack.instance.currentCellType));
+            Item item = null;
+            Backpack.instance.Items.ToList().ForEach(x =>
+            {
+                if(x != null && x.ItemData.CellType == Backpack.instance.currentCellType)
+                {
+                    item = x;
+                }
+            });
             item.gameObject.SetActive(true);
             Backpack.instance.UploadItem(items.ToList().IndexOf(item));
-            Debug.Log(item.ItemData.Name);
 
         }
         catch (NullReferenceException ex)
