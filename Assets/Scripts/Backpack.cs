@@ -5,6 +5,7 @@ public class Backpack : MonoBehaviour
 {
     public static Backpack instance;
     [SerializeField] private Item[] items = new Item[] { };
+    public CellType currentCellType;
     public UnityEvent<Item[]> OnInventoryChanged;
     public Item[] Items
     {
@@ -18,6 +19,7 @@ public class Backpack : MonoBehaviour
             OnInventoryChanged?.Invoke(value);
         }
     }
+
     private void Awake()
     {
         if(instance == null)

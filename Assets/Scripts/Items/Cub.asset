@@ -16,3 +16,4 @@ MonoBehaviour:
   ID: 0
   CellType: 1
   Weight: 5
+  Icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
