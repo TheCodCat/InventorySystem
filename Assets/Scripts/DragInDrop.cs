@@ -10,6 +10,7 @@ public class DragInDrop : MonoBehaviour
     [SerializeField] private bool isGrag;
     [SerializeField] private Vector3 offset;
     [SerializeField] private Rigidbody body;
+    [SerializeField] private Item item;
     private Camera camera;
     private CancellationTokenSource cancellationTokenSource;
 
@@ -27,6 +28,7 @@ public class DragInDrop : MonoBehaviour
         body.isKinematic = true;
         offset = GetOffset();
         await Drag(cancellationTokenSource);
+        item.State = ItemState.None;
     }
     private void OnMouseUp()
     {
@@ -37,7 +39,8 @@ public class DragInDrop : MonoBehaviour
     }
     private async UniTask Drag(CancellationTokenSource cancellationToken)
     {
-        if (cancellationTokenSource.IsCancellationRequested)
+        item.State = ItemState.Drag;
+        if (cancellationTokenSource.IsCancellationRequested || item.State == ItemState.None)
         {
             cancellationToken.Dispose();
             return;
@@ -53,6 +56,7 @@ public class DragInDrop : MonoBehaviour
                     body.MovePosition(hitInfo.point + offset);
                 }
             }
+            item.State = ItemState.None;
         }
     }
     private Vector3 GetOffset()
