@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,7 +30,7 @@ public class Backpack : MonoBehaviour
         }
     }
 
-    public void PutItem(Item item)
+    public async Task PutItem(Item item)
     {
         int index = item.ItemData.CellType switch
         {
@@ -44,6 +45,7 @@ public class Backpack : MonoBehaviour
         item.transform.SetParent(transform);
         item.PutToUpload(vector3, 2f, true);
         Items = newItems;
+        await RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged")).AsUniTask();
     }
 
     public Item UploadItem(int index)
@@ -55,6 +57,7 @@ public class Backpack : MonoBehaviour
         Items = newItems;
         item.PutToUpload(new Vector3(0,2,0), 2f, false);
         item.transform.SetParent(null);
+        RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged")).AsUniTask();
         return item;
     }
 
