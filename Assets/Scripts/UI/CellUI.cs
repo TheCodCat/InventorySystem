@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class CellUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public CellType CellType;
-    [SerializeField] private Image icon;
+    public CellType CellType;// тип клетки
+    [SerializeField] private Image icon;// картинка
     public void OnPointerEnter(PointerEventData eventData)
     {
         Backpack.instance.currentCellType = CellType;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackpackPointController : MonoBehaviour
 {
-    public ItemPoint[] ItemPoints;
+    public ItemPoint[] ItemPoints;//точки присоединения
 
     public Vector3 GetItemPoint(CellType cellType)
     {

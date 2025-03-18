@@ -4,15 +4,15 @@ using System.Threading;
 
 public class DragInDrop : MonoBehaviour
 {
-    [SerializeField] private PlaneDrag planeDrag;
-    [SerializeField] private PlaneDrag planeDragTemp;
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private bool isGrag;
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private Rigidbody body;
-    [SerializeField] private Item item;
-    private Camera camera;
-    private CancellationTokenSource cancellationTokenSource;
+    [SerializeField] private PlaneDrag planeDrag;//префаб поверхности
+    [SerializeField] private PlaneDrag planeDragTemp;// временная поверхность на сцене
+    [SerializeField] private LayerMask layerMask;// маска слоя
+    [SerializeField] private bool isGrag;// перемещается ли предмет
+    [SerializeField] private Vector3 offset;// оффсет от центра предмета
+    [SerializeField] private Rigidbody body;// физика предмета
+    [SerializeField] private Item item;// предмет
+    private Camera camera;//камера
+    private CancellationTokenSource cancellationTokenSource;// токен для ассинхронки
 
     private void Start()
     {
@@ -37,7 +37,7 @@ public class DragInDrop : MonoBehaviour
         body.isKinematic = false;
         Destroy(planeDragTemp.gameObject);
     }
-    private async UniTask Drag(CancellationTokenSource cancellationToken)
+    private async UniTask Drag(CancellationTokenSource cancellationToken)//перемещение
     {
         item.State = ItemState.Drag;
         if (cancellationTokenSource.IsCancellationRequested || item.State == ItemState.None)
@@ -59,11 +59,11 @@ public class DragInDrop : MonoBehaviour
             item.State = ItemState.None;
         }
     }
-    private Vector3 GetOffset()
+    private Vector3 GetOffset()// получение оффета
     {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin,ray.direction * 10, Color.red);
-        if(Physics.Raycast(ray, out RaycastHit hitInfo, 10, layerMask))
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 10, layerMask))
         {
             offset = hitInfo.point - transform.position;
             return offset;

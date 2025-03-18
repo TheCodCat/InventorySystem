@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 public class Backpack : MonoBehaviour
 {
-    public static Backpack instance;
-    [SerializeField] private Item[] items = new Item[] { };
-    [SerializeField] private BackpackPointController backpackPointController;
-    public CellType currentCellType;
-    public UnityEvent<Item[]> OnInventoryChanged;
-    public Item[] Items
+    public static Backpack instance;//синглтон
+    [SerializeField] private Item[] items = new Item[] { };// массив предметов в инвенторе
+    [SerializeField] private BackpackPointController backpackPointController;// точки присоединения
+    public CellType currentCellType;// текущий тип предмета
+    public UnityEvent<Item[]> OnInventoryChanged;// евент
+    public Item[] Items// обсервер
     {
         get
         {
@@ -24,13 +24,13 @@ public class Backpack : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
     }
 
-    public async Task PutItem(Item item)
+    public async Task PutItem(Item item)// добавление в инвентарь
     {
         int index = item.ItemData.CellType switch
         {
@@ -45,28 +45,28 @@ public class Backpack : MonoBehaviour
         item.transform.SetParent(transform);
         item.PutToUpload(vector3, 2f, true);
         Items = newItems;
-        string result = await RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged"));
+        string result = await RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged"));//пост запрос
         Debug.Log(result);
     }
 
-    public Item UploadItem(int index)
+    public Item UploadItem(int index)//изьятие из инвенторя
     {
         var item = Items[index] ?? new Item();
 
         Item[] newItems = Items;
         newItems[index] = null;
         Items = newItems;
-        item.PutToUpload(new Vector3(0,2,0), 2f, false);
+        item.PutToUpload(new Vector3(0, 2, 0), 2f, false);
         item.transform.SetParent(null);
-        RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged")).AsUniTask();
+        RESTApi.POSTApi(new Assets.Scripts.Models.RESTDto(item.ItemData.ID, "OnInventoryChanged")).AsUniTask();//пост запрос
         return item;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.TryGetComponent(out Item component))
+        if (collision.transform.TryGetComponent(out Item component))
         {
-            PutItem(component);
+            PutItem(component);// добавление в инвентарь
         }
     }
 }
