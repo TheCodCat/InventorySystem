@@ -36,6 +36,7 @@ public class BackpackUI : MonoBehaviour
             Debug.Log("Слот пустой");
         }
     }
+    //обновление UI в зависимости от инвенторя
     public void ChangeView(Item[] newItems)
     {
         items = newItems;

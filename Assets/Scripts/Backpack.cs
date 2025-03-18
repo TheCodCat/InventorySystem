@@ -37,6 +37,7 @@ public class Backpack : MonoBehaviour
             CellType.Three => 2,
             _ => 0
         };
+        item.PutToUpload(new Vector3(0,5,0), 2f, true);
         Item[] newItems = Items;
         newItems[index] = item;
         Items = newItems;
@@ -49,7 +50,7 @@ public class Backpack : MonoBehaviour
         Item[] newItems = Items;
         newItems[index] = null;
         Items = newItems;
-
+        item.PutToUpload(new Vector3(0, 1, 0), 2f, false);
         return item;
     }
 
@@ -58,7 +59,6 @@ public class Backpack : MonoBehaviour
         if(collision.transform.TryGetComponent(out Item component))
         {
             PutItem(component);
-            component.gameObject.SetActive(false);
         }
     }
 }
